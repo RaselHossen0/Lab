@@ -1,0 +1,113 @@
+public class Main {
+
+
+    public static void main(String[] args) {
+        ll a = new ll();
+        a.insertF(5);
+        a.insertF(6);
+       a.insertF(5);
+        a.insertF(6);
+       a.insertF(5);
+      a.insertF(6);
+      a.insertF(5);
+      a.insertF(6);
+      a.insertL(100);
+      a.insertL(100);
+      a.insertM(456, 3);
+        a.print();
+        System.out.print("\n"+a.size());
+
+    }
+
+
+}
+
+class ll {
+	int sz;
+    static class Node {
+        int data;
+        Node next;
+        
+
+        Node(int dat) {
+            data = dat;
+            next = null;
+        }
+    }
+
+
+    static Node head = null;
+
+    public void insertF(int dat) {
+    	sz++;
+        Node newnode = new Node(dat);
+        if (head == null) {
+            head = newnode;
+            return;
+        }
+        else {
+        newnode.next = head;
+        head = newnode;
+        }
+
+    }
+    public void insertL(int dat) {
+    	sz++;
+        Node newnode = new Node(dat);
+        if (head == null) {
+            head = newnode;
+            return;
+        }
+        Node current=head;
+        while(current.next!=null) {
+        	current=current.next;
+        }
+        
+        current.next = newnode;
+        
+        
+
+    }
+    public void insertM(int dat,int pos) {
+    	sz++;
+        Node newnode = new Node(dat);
+        if (head == null) {
+            head = newnode;
+            return;
+        }
+        if(pos>sz||pos<0)
+         return;
+        Node current=head;
+        for(int i=0;i<sz;i++) {
+        	if(i==pos) {
+        		Node temp=current;//3 (4) 5
+        		current.next=newnode;
+        		newnode.next=temp;
+        	}
+        	current=current.next;
+        	
+        }
+       
+ 
+
+    }
+
+    public void print() {
+        if (head == null) {
+            System.out.println("Empty");
+            return;
+        }
+        
+        Node current = head;
+        
+        while (current!= null) {
+            System.out.print(current.data+" ");
+            current = current.next;
+        }
+       
+    }
+    public int size() {
+    	return sz;
+    }
+    
+}
